@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиенты:</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+
+    <form method="POST" th:object="${user}">
+        <input  type="text"
+                th:field="${user.name}">
+        <input  type="text"
+                th:field="${user.phone}">
+        <button>Отправить</button>
+    </form>
+    <h1>Пользователи:</h1>
+        <div th:each="user:${users}">
+            <span th:text="${user.getValue().id}"></span><br>
+            <span th:text="${user.getValue().name}"></span><br>
+            <span th:text="${user.getValue().phone}"></span>
+        </div>
+</body>
+</html>
