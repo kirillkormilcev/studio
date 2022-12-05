@@ -18,9 +18,9 @@
     </form>
     <h1>Пользователи:</h1>
         <div th:each="user:${users}">
-            <span th:text="${user.getValue().id}"></span><br>
-            <span th:text="${user.getValue().name}"></span><br>
-            <span th:text="${user.getValue().phone}"></span>
+            <span th:text="${user.getId()}"></span><br>
+            <span th:text="${user.getName()}"></span><br>
+            <span th:text="${user.getPhone()}"></span>
         </div>
 </body>
 </html>

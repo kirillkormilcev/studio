@@ -1,9 +1,11 @@
 package ru.shagiclass.studio.controller;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ru.shagiclass.studio.dao.UserDao;
 import ru.shagiclass.studio.model.User;
 
 import java.util.*;
@@ -12,27 +14,13 @@ import java.util.*;
 @Controller
 @RequestMapping("/user")
 @Getter
+@RequiredArgsConstructor
 public class UserController {
-    private final Map<Long, User> users = new HashMap<>();
-    Long userId = 2L;
-
-    public UserController() {
-        users.put(1L, User.builder()
-                        .id(1L)
-                        .name("Кирилл")
-                        .phone("7987983465490")
-                .build());
-        users.put(2L, User.builder()
-                .id(2L)
-                .name("Кириллка")
-                .phone("79879838746549")
-                .build());
-    }
+    private final UserDao userDao;
 
     @PostMapping
     public String addUserForm(User user) {
-        user.setId(++userId);
-        users.put(user.getId(), user);
+        userDao.save(user);
         return "redirect: /user";
     }
 
@@ -42,12 +30,12 @@ public class UserController {
     }
 
     @ModelAttribute(name="users")
-    public Map<Long, User> getUsers() {
-        return users;
+    public List<User> getUsers() {
+        return userDao.findAll();
     }
 
     @ModelAttribute(name="user")
     public User getUser() {
-        return User.builder().build();
+        return new User();
     }
 }

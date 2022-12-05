@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:./db/studio
+    driverClassName: org.h2.Driver
+    username: kirill
+    password: 8W4fKk
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8
+  jpa:
+    generate-ddl: true
+    show_sql: true
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+logging:
+  level:
+    org:
+      springframework:
+        orm:
+          jpa: INFO
+          JpaTransactionManager: DEBUG
+      transaction: INFO
+      interceptor: TRACE
