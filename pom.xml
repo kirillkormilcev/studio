@@ -8,6 +8,7 @@
 		<version>3.1.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<packaging>war</packaging>
 	<groupId>ru.shagi-class</groupId>
 	<artifactId>studio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
